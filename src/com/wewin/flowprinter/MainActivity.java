@@ -1,6 +1,7 @@
 package com.wewin.flowprinter;
 
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,6 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+/**
+ * 主程序
+ * 
+ * @author HCOU
+ * @date 2013-6-17
+ */
 public class MainActivity extends Activity {
 	private long exitTime = 0;// 退出倒计时
 	private Button print_btn;
@@ -68,7 +75,8 @@ public class MainActivity extends Activity {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.print_btn:// 打印按钮
-
+				// 完成打印后回调APK，传数据
+				goBackMainActivity();
 				break;
 			case R.id.cls_btn:// 清楚数据按钮
 				clsTheAllContext();
@@ -77,6 +85,25 @@ public class MainActivity extends Activity {
 				break;
 			}
 		}
+	}
+
+	/**
+	 * 回调
+	 * 
+	 * @date 2013-6-17
+	 */
+	private void goBackMainActivity() {
+		Intent mIntent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("status", "OK");
+		mIntent.putExtras(bundle);
+		ComponentName comp = new ComponentName("com.wewin.xmlsender",
+				"com.wewin.xmlsender.XmlSenderActivity");
+		mIntent.setComponent(comp);
+		mIntent.setAction("android.intent.action.MAIN");
+		startActivity(mIntent);
+
+		finish();
 	}
 
 	/**
