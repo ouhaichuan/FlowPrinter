@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">流打印</string>
+    <string name="app_name">流打印平台</string>
     <string name="welcome_str">欢迎使用流打印，我们一起开始卖萌吧</string>
     <string name="printbtn_str">打印标签</string>
     <string name="clsbtn_str">清楚内容</string>
-    <string name="main_title">流打印</string>
+    <string name="main_title">流打印平台</string>
     <string name="usr_inputNum_str">用户接入号：</string>
     <string name="guanglu_str">光路名称：</string>
     <string name="usr_addr">用户地址：</string>

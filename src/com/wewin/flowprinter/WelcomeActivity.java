@@ -13,6 +13,7 @@ import android.os.Handler;
  */
 public class WelcomeActivity extends Activity {
 	private Handler mHandler;
+	private String xml_data;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -22,6 +23,9 @@ public class WelcomeActivity extends Activity {
 	}
 
 	public void initView() {
+		Intent intent = getIntent();
+		xml_data = intent.getStringExtra("xml_data");
+
 		mHandler = new Handler();
 		// 延迟3秒加载欢迎界面
 		mHandler.postDelayed(new Runnable() {
@@ -34,6 +38,9 @@ public class WelcomeActivity extends Activity {
 
 	public void goMainActivity() {
 		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("xml_data", xml_data);
+		intent.putExtras(bundle);
 		intent.setClass(this, MainActivity.class);
 		startActivity(intent);
 		finish();// 将活动推向后台

@@ -21,8 +21,8 @@ public final class R {
         public static final int whatsnew_btn_pressed=0x7f020007;
     }
     public static final class id {
+        public static final int cls_btn=0x7f050004;
         public static final int print_btn=0x7f050003;
-        public static final int print_cls=0x7f050004;
         public static final int txt_guanglu=0x7f050001;
         public static final int txt_user_addr=0x7f050002;
         public static final int txt_usr_inputNum=0x7f050000;

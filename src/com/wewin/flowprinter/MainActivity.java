@@ -1,18 +1,93 @@
 package com.wewin.flowprinter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private long exitTime = 0;// 退出倒计时
+	private Button print_btn;
+	private Button cls_btn;
+	private static EditText usr_InputNum, guanglu_Name, usr_Addr;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		initView();
+		initData();
+	}
+
+	/**
+	 * 解析XML流，填充输入框数据
+	 * 
+	 * @date 2013-6-17
+	 */
+	private void initData() {
+		Intent intent = getIntent();
+		String xml_data = intent.getStringExtra("xml_data");
+		String[] strs = xml_data.split("\\$");
+		if (strs.length >= 3) {
+			usr_InputNum.setText(new String(strs[0]));
+			guanglu_Name.setText(new String(strs[1]));
+			usr_Addr.setText(new String(strs[2]));
+		}
+	}
+
+	/**
+	 * 初始化界面
+	 * 
+	 * @date 2013-6-14
+	 */
+	private void initView() {
+		print_btn = (Button) findViewById(R.id.print_btn);
+		print_btn.setOnClickListener(new BtnOnClickAdapter());
+		cls_btn = (Button) findViewById(R.id.cls_btn);
+		cls_btn.setOnClickListener(new BtnOnClickAdapter());
+
+		usr_InputNum = (EditText) findViewById(R.id.txt_usr_inputNum);
+		guanglu_Name = (EditText) findViewById(R.id.txt_guanglu);
+		usr_Addr = (EditText) findViewById(R.id.txt_user_addr);
+	}
+
+	/**
+	 * 按钮点击事件适配器
+	 * 
+	 * @author HCOU
+	 * @date 2013-6-14
+	 */
+	class BtnOnClickAdapter implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.print_btn:// 打印按钮
+
+				break;
+			case R.id.cls_btn:// 清楚数据按钮
+				clsTheAllContext();
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	/**
+	 * 清楚数据
+	 * 
+	 * @date 2013-6-14
+	 */
+	public void clsTheAllContext() {
+		usr_InputNum.setText("");
+		guanglu_Name.setText("");
+		usr_Addr.setText("");
 	}
 
 	@Override
